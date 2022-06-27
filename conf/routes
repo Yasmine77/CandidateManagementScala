@@ -1,0 +1,95 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# https://www.playframework.com/documentation/latest/ScalaRouting
+# ~~~~
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file             controllers.Assets.versioned(path="/public", file: Asset)
+
+#USER CRUD
+POST  /users                   controllers.UserController.createUser(email: String)
+POST  /login                     controllers.UserController.login( email: String, password: String)
+PUT  /update-user                  controllers.UserController.updateUser()
+PUT  /update-users                  controllers.UserController.usersUpdate()
+PUT  /password-change             controllers.UserController.resetPassword(email: String)
+ DELETE  /delete-user             controllers.UserController.deleteUser(id:Long)
+#PUT  /role-change             controllers.UserController.changeRole(id:Long,roleAffected:Roles,userRole: Roles)
+PUT  /role-change             controllers.UserController.changeRole(id:Long,roleAffected:Roles)
+
+GET  /all-users                 controllers.UserController.getAllUsers
+POST  /register                   controllers.UserController.register()
+GET  /user                controllers.UserController.getUser(id:Long)
+GET   /userbyrole              controllers.UserController.searchUserByRole(role:Roles )
+
+#OFFER CRUD
+GET  /all-offers                 controllers.OffersController.getAllOffers
+
+#POST  /create-offer                controllers.OffersController.createOffer(role :Roles)
+POST  /create-offer                controllers.OffersController.createOffer()
+
+GET   /offers                    controllers.OffersController.getOffer(id:Long)
+GET   /offersbytitle               controllers.OffersController.searchOfferByTitle(title:String )
+GET   /offersbytype                controllers.OffersController.searchOfferByType(OfferType:OfferType)
+#PUT   /update-offer                 controllers.OffersController.updateOffer(role :Roles)
+PUT   /update-offer                 controllers.OffersController.updateOffer()
+PUT  /closed             controllers.OffersController.closed(id:Long,closed:Boolean)
+GET   /offers                    controllers.OffersController.getOffer(id:Long)
+GET   /open-offers                    controllers.OffersController.getOpen()
+GET   /closed-offers                    controllers.OffersController.getClosed()
+
+GET   /getOfferJob                   controllers.OffersController.getOfferJob()
+GET   /getOfferInter                   controllers.OffersController.getOfferInter()
+
+GET   /app-offer-ref                   controllers.OffersController.searchByOfferRef(offerRef: String)
+
+
+#PROFILE CRUD
+
+#POST   /createprofile                   controllers.ProfileController.createProfile(username: String)
+GET   /profile                controllers.ProfileController.getProfile(id:Long)
+GET   /user-profile            controllers.ProfileController.getProfileByUserId(id:Long)
+PUT    /updateprofile                     controllers.ProfileController.updateProfile
+ DELETE  /deleteprofile              controllers.ProfileController.deleteProfile(id:Long)
+
+
+#APPLICATION CRUD
+
+#POST  /create-app               controllers.ApplicationController.Apply(offerRef:Long,userRef: Long,role :Roles)
+POST  /create-app               controllers.ApplicationController.Apply(offerRef:Long,userRef:Long)
+
+
+#POST  /create-app               controllers.ApplicationController.ApplyOnlyOnce(offerRef:Long,userRef: Long)
+#PUT   /update-status            controllers.ApplicationController.updateStatus(id:Long,appStatus:AppStatus,role:Roles)
+PUT   /update-status            controllers.ApplicationController.updateStatus(id:Long,appStatus:AppStatus)
+
+GET   /app-offer                 controllers.ApplicationController.getAppByOfferRef(offerRef:Long)
+
+GET   /user-apps                 controllers.ApplicationController.getAppByOfferRef(offerRef:Long)
+
+GET   /count-apps                 controllers.ApplicationController.getAppByUserRef(userRef:Long)
+
+
+#RESUME CRUD
+#POST  /create-resume               controllers.ResumeController.createResume(role:Roles)
+POST  /create-resume               controllers.ResumeController.createResume()
+PUT  /create-work-exp               controllers.ResumeController.adWorkExp(id:Long, workExperience: String,workDate:String)
+GET   /resume-by-user               controllers.ResumeController.getResumeByUser(userRef: Long)
+PUT  /add-skills               controllers.ResumeController.Skills(id:Long, skills:String)
+DELETE  /delete-resume             controllers.ResumeController.deleteResume(id: Long)
+
+
+
+GET   /resume                 controllers.ResumeController.getResume(id:Long)
+GET   /resumebySkills          controllers.ResumeController.searchResumeBySkills(skills:String )
+PUT   /update-resume               controllers.ResumeController.updateResume(role:Roles)
+GET   /resumes                     controllers.ResumeController.getAllResume
+
+
+PUT  /add-academic              controllers.ResumeController.updateAcademic(id:Long, academicBackground:String,acadDate:String)
+
+
+#mail crud
+#POST  /send-mail               controllers.ContactUsController.sendEmails(email_user: String, subject: String, msg: String)
+POST  /send-mail               controllers.ContactUsController.sendEmail
+
